@@ -1,0 +1,38 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=4243
+
+DESCRIPTION
+This plugin allows you to use your normal tab settings ('tabstop',
+'smarttabstop', 'expandtab') for the beginning of the line (up to the first
+non-whitespace character), and have <Tab> expanded to the appropriate number
+of spaces (i.e. like :set expandtab) anywhere else. This effectively
+distinguishes "indenting" from "alignment"; the characters inserted by <Tab>
+depend on the local context.
+
+HOW IT WORKS
+This plugin overrides the default behavior of the <Tab> and <BS> keys in
+insert mode.
+
+RELATED WORKS
+- ctab.vim (vimscript #231) by Michael Geddes exists since 2002. It also
+  offers global and buffer-local mappings, but uses a slightly different
+  approach, does not handle comment[prefixes], instead has some
+  filetype-specific stuff. It also remaps <CR>, o and O, and additionally
+  offers a :RetabIndent command.
+- http://vim.wikia.com/wiki/Converting_tabs_to_spaces
+
+USAGE
+The indent tab can be en-/disabled globally or only for a particular buffer.
+    call IndentTab#Set( isTurnOn, isGlobal )
+You probably want to define your own mappings / commands for that, or do this
+for certain filetypes only.
+
+<Tab>                   Uses normal tab settings at the beginning of the line
+                        (before the first non-whitespace character), and
+                        inserts spaces otherwise.
+<BS>                    Uses normal tab settings to delete tabs at the
+                        beginning of the line; elsewhere it also removes
+                        "space-expanded" tabs as if 'softtabstop' were
+                        enabled.
+                        The exact circumstances under which the normal tab
+                        settings apply are configured by the
+                        g:IndentTab_scopes setting.
