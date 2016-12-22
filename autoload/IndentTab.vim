@@ -161,12 +161,19 @@ function! IndentTab#Backspace()
     endif
 endfunction
 
+function! s:InsertSmartTab()
+    return IndentTab#SuperTabIntegration#GetExpr()
+endfunction
+
 " The indent tab can be en-/disabled globally or only for a particular buffer.
 function! IndentTab#Set( isTurnOn, isGlobal )
     if a:isTurnOn
 	let l:mappingScope = (a:isGlobal ? '' : '<buffer>')
 	if ! g:IndentTab_IsSuperTab
 	    execute 'inoremap' l:mappingScope '<expr> <Tab> IndentTab#Tab()'
+	else
+	    " If SuperTab, pretend a Smart-Tab mapping. SuperTab will record it and uses it instead of <tab>.
+	    execute 'inoremap <silent> <expr> <tab> <SID>InsertSmartTab()'
 	endif
 	    execute 'inoremap' l:mappingScope '<expr> <BS>  IndentTab#Backspace()'
     elseif a:isGlobal

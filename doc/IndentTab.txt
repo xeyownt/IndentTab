@@ -101,9 +101,8 @@ Plugins like SuperTab (vimscript #1643) overload the <Tab> key with
 insert-mode completion and fall back to inserting a literal <Tab> character.
 This is in conflict with this plugin's maps. To integrate, set >
     let g:IndentTab_IsSuperTab = 1
-This avoids that IndentTab overrides the <Tab> mapping. Inside SuperTab,
-instead of returning a literal <Tab>, you need to use the function
-IndentTab#SuperTabIntegration#GetExpr() instead.
+This instructs IndentTab to map <Tab> like Smart-Tabs plugin (vimscript #231),
+which is then recognized by SuperTab.
 
 ==============================================================================
 LIMITATIONS					       *IndentTab-limitations*

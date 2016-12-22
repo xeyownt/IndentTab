@@ -36,3 +36,8 @@ for certain filetypes only.
                         The exact circumstances under which the normal tab
                         settings apply are configured by the
                         g:IndentTab_scopes setting.
+
+SUPERTAB
+This fork improves integration with plugin SuperTab. If 
+'g:IndentTab_IsSuperTab' is set to 1, SuperTab will call IntendTab function
+instead of inserting a regular tab character.
